@@ -43,11 +43,18 @@ def main():
     for column in df.columns[20:23]:
             entire_list.append(column)
 
+    #Creating Subset Lists
+    subset_list_human_char = ["KIDSDRIV", "AGE", "YOJ", "INCOME", "PARENT1", "HOME_VAL", "MSTATUS", "GENDER", "EDUCATION", "OCCUPATION"]
+    subset_list_car_char = ["TRAVTIME", "CAR_USE", "BLUEBOOK", "CAR_TYPE", "OLDCLAIM", "CLM_FREQ", "REVOKED", "MVR_PTS", "CAR_AGE", "CLAIM_FLAG", "URBANICITY"]
+
     #List of Models
-    model_list = [LinearRegression(),SGDRegressor(loss="squared_loss",penalty=None,eta0=0.00000000015)]
+    model_list = [LinearRegression(),SGDRegressor()]
 
     #Calls Regresson Model 
     regression_model(df, entire_list, model_list)
+    regression_model(df, subset_list_human_char, model_list)
+    regression_model(df, subset_list_car_char, model_list)
+
     
 
 if __name__ == "__main__":
