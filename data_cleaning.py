@@ -7,7 +7,7 @@ print(df) #check if prints
 
 
 # #### Cleaning Code #####
-df = df.drop(columns=["ID","BIRTH","HOMEKIDS","BLUEBOOK","TIF","RED_CAR"]) #drops the 6 useless columns
+df = df.drop(columns=["ID","BIRTH","HOMEKIDS","TIF","RED_CAR"]) #drops the 6 useless columns
 print(df)
 # df.to_csv("Final_Project/Data/US_Accidents_May19_cleaned_2.csv")
 

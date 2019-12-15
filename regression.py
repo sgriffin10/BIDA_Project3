@@ -16,9 +16,11 @@ df = pd.read_csv("car_insurance_claim_noNAs_2.csv")
 
 model_list = [LinearRegression()] #,SGDRegressor()
 empty_list = []
-for column in df.columns[1:19]:
+for column in df.columns[1:18]:
     empty_list.append(column)
-    for column in df.columns[20:]:
+for column in df.columns[19:22]:
+        empty_list.append(column)
+print(empty_list)
     
 
 
