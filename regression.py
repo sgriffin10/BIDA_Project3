@@ -44,7 +44,7 @@ df = pd.read_csv("US_Accidents_May19_cleaned_noNAs_1.csv")
 
 # # Instantiate the LinearRegression estimator
 # #"Start_Time","Side","City","County","State","Zipcode","Timezone"
-variables_list = ["Start_Lat","Distance(mi)","Temperature(F)","Wind_Chill(F)"]
+variables_list = ["Start_Lat","Distance(mi)","Temperature(F)","Wind_Chill(F)","Precipitation(in)"]
 model_list = [LinearRegression(),SGDRegressor()]
 
 for column in variables_list:
