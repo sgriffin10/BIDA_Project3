@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from sklearn import metrics
 import numpy as np
 
-df = pd.read_csv("car_insurance_claim.csv_noNAs_1.csv")
+df = pd.read_csv("car_insurance_claim.csv_noNAs_2.csv")
 
 pd.options.display.float_format = "{:.2f}".format 
 # print(df.describe())
@@ -16,14 +16,14 @@ pd.options.display.float_format = "{:.2f}".format
 # print(df.dtypes)
 
 ### Instantiate the LinearRegression estimator ###
-variables_list = []
-def int_float_list(name_of_list):
-    for column in df.columns[:]:
-        if df[column].dtypes == "int64" or df[column].dtypes == "float64":
-            name_of_list.append(column)
-    return name_of_list
+# variables_list = []
+# def int_float_list(name_of_list):
+#     for column in df.columns[:]:
+#         if df[column].dtypes == "int64" or df[column].dtypes == "float64":
+#             name_of_list.append(column)
+#     return name_of_list
 
-print(int_float_list(variables_list)) #double check
+# print(int_float_list(variables_list)) #double check
 #Non-Integer Variables: "Start_Time","Side","City","County","State","Zipcode","Timezone" 
 model_list = [LinearRegression(),SGDRegressor()] #a list of the regression models
 

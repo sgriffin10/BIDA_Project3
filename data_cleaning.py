@@ -18,12 +18,13 @@ print(df)
 
 df = df.dropna() #if you want to remove all rows with missing values
 print(df.isnull().any()) #check
-print(df) #visual of df after dropped rows
+# print(df) #visual of df after dropped rows
 
 # print(df.types)
 for column in df.columns[:]:
     df[column] = df[column].astype(str) 
     df[column] = df[column].str.replace('$', '')
+    df[column] = df[column].str.replace(',', '')
 # print(df)
 # print(df.dtypes)
 
@@ -41,7 +42,17 @@ for column in cat_req_list:
     df[column] = df[column].astype('category')
     df[column] = df[column].cat.codes
 print(df)
+# print(df.dtypes)
+
+# Change object to int
+for column in df.columns[:]:
+    if df[column].dtypes == "object":
+        # df[column] = df[column].astype(str) 
+        df[column] = df[column].astype(float)
+print(df) 
 print(df.dtypes)
 
 
-df.to_csv("car_insurance_claim.csv_noNAs_1.csv")
+
+
+df.to_csv("car_insurance_claim.csv_noNAs_2.csv")
