@@ -10,14 +10,21 @@ import numpy as np
 
 df = pd.read_csv("US_Accidents_May19_cleaned_noNAs_1.csv")
 
-# pd.options.display.float_format = "{:.2f}".format 
+pd.options.display.float_format = "{:.2f}".format 
 # print(df.describe())
 # print(df.shape)
-# print(df.dtypes)
+print(df.dtypes)
 
 ### Instantiate the LinearRegression estimator ###
-variables_list = ["Start_Lat","Distance(mi)","Temperature(F)","Wind_Chill(F)","Precipitation(in)"] # a list of integer variables
-# Non-Integer Variables: "Start_Time","Side","City","County","State","Zipcode","Timezone" 
+variables_list = []
+def int_float_list(name_of_list):
+    for column in df.columns[:]:
+        if df[column].dtypes == "int64" or df[column].dtypes == "float64":
+            name_of_list.append(column)
+    return name_of_list
+
+int_float_list(variables_list) #double check
+#Non-Integer Variables: "Start_Time","Side","City","County","State","Zipcode","Timezone" 
 model_list = [LinearRegression(),SGDRegressor()] #a list of the regression models
 
 #Spencer Comment: Not sure what regression parameters are????
@@ -40,7 +47,7 @@ for column in variables_list: #runs through integer variables list above
         print("Mean Absolute Error: ", metrics.mean_absolute_error(expected, predicted))
         print("Mean Squared Error: ", metrics.mean_squared_error(expected, predicted))
         print("Root Mean Squared Error: ", np.sqrt(metrics.mean_squared_error(expected, predicted)))
-        print("Mean Squared Log Error: ", np.sqrt(metrics.mean_squared_log_error(expected, predicted)))
+        # print("Mean Squared Log Error: ", np.sqrt(metrics.mean_squared_log_error(expected, predicted)))
         print() #prints space
 
 # #  ---visualization
