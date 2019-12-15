@@ -15,63 +15,37 @@ df = pd.read_csv("US_Accidents_May19_cleaned_noNAs_1.csv")
 # print(df.shape)
 # print(df.dtypes)
 
-#"Start_Time","Side","City","County","State","Zipcode","Timezone"
-# variables_list = ["Start_Lat","Distance(mi)","Temperature(F)","Wind_Chill(F)"]
+### Instantiate the LinearRegression estimator ###
+variables_list = ["Start_Lat","Distance(mi)","Temperature(F)","Wind_Chill(F)","Precipitation(in)"] # a list of integer variables
+# Non-Integer Variables: "Start_Time","Side","City","County","State","Zipcode","Timezone" 
+model_list = [LinearRegression(),SGDRegressor()] #a list of the regression models
 
-# for column in variables_list:
-#     X = pd.DataFrame(df[column])
-#     y = pd.DataFrame(df["Severity"])
-#     model = LinearRegression()
-#     scores = []
-#     kfold = KFold(n_splits=3, shuffle=True, random_state=42)
-#     for i, (train, test) in enumerate(kfold.split(X, y)):
-#         model.fit(X.iloc[train,:], y.iloc[train,:])
-#         score = model.score(X.iloc[test,:], y.iloc[test,:])
-#         scores.append('%.8f'%score)
-#     print(column + ":", scores)
+#Spencer Comment: Not sure what regression parameters are????
 
-# # Bunch has target and data attributes.
-# print(df.keys())
-# # in df, it appears that features are listed in feature_names
-# print(df.feature_names)
-
-# Split the train and test data sets
-# X = pd.DataFrame(df["Temperature(F)"])
-# y = pd.DataFrame(df["Severity"])
-# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state=0)
-# train, test = train_test_split(df, test_size = 0.25)
-
-
-# # Instantiate the LinearRegression estimator
-# #"Start_Time","Side","City","County","State","Zipcode","Timezone"
-variables_list = ["Start_Lat","Distance(mi)","Temperature(F)","Wind_Chill(F)","Precipitation(in)"]
-model_list = [LinearRegression(),SGDRegressor()]
-
-for column in variables_list:
-    X = pd.DataFrame(df[column])
-    y = pd.DataFrame(df["Severity"])
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state=0)
-    for models in model_list:
+for column in variables_list: #runs through integer variables list above
+    X = pd.DataFrame(df[column]) #Whatever is in the list above
+    y = pd.DataFrame(df["Severity"]) #Severity is dependent variable
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state=0) #25/75 test-training split
+    for models in model_list: #loops through the 2 models in list above
         model = models;
         model.fit(X = X_train, y = y_train);
-        # model.fit(X = pd.DataFrame(df[column]), y = pd.DataFrame(df["Severity"]));
-        # print(model.intercept_)
-        # for i, column in df.columns[:]:
-        print("\u0332".join(column))
-        # print()
-        print("Coefficient:", model.coef_)
-        # print(f'{column:>10}: {model.coef_[i]}')
+        # print(model.intercept_) #prints intercept
+        print("\u0332".join(column)) #prints underline
+        print("Coefficient:", model.coef_) #prints coefficient
         predicted = model.predict((X_test))  
         expected = y_test
-        # # Accuracy
+        ### Accuracy Scores ###
+        # Spencer Comment: Will need to assign the below to variables and then print
         print("R-Squared Score: ", metrics.r2_score(expected, predicted))
         print("Mean Absolute Error: ", metrics.mean_absolute_error(expected, predicted))
         print("Mean Squared Error: ", metrics.mean_squared_error(expected, predicted))
         print("Root Mean Squared Error: ", np.sqrt(metrics.mean_squared_error(expected, predicted)))
         print("Mean Squared Log Error: ", np.sqrt(metrics.mean_squared_log_error(expected, predicted)))
-        print()
+        print() #prints space
 
-# # ---visualization
+# #  ---visualization
+
+# Spencer Comment: We will need to change this section to be specific
 
 # df = pd.DataFrame()
 # df['Expected'] = pd.Series(expected)
