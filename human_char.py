@@ -9,7 +9,7 @@ import numpy as np
 
 df = pd.read_csv("car_insurance_claim_noNAs_2.csv")
 
-X = df["AGE", "YOJ", "INCOME", "PARENT1", "HOME_VAL", "MSTATUS", "GENDER", "EDUCATION", "OCCUPATION"]
+human_list = ["AGE", "YOJ", "INCOME", "PARENT1", "HOME_VAL", "MSTATUS", "GENDER", "EDUCATION", "OCCUPATION"]
 y = df["CLM_AMT"]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=1)
