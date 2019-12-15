@@ -8,12 +8,12 @@ import matplotlib.pyplot as plt
 from sklearn import metrics
 import numpy as np
 
-df = pd.read_csv("US_Accidents_May19_cleaned_noNAs_1.csv")
+df = pd.read_csv("car_insurance_claim.csv_noNAs_1.csv")
 
 pd.options.display.float_format = "{:.2f}".format 
 # print(df.describe())
 # print(df.shape)
-print(df.dtypes)
+# print(df.dtypes)
 
 ### Instantiate the LinearRegression estimator ###
 variables_list = []
@@ -23,7 +23,7 @@ def int_float_list(name_of_list):
             name_of_list.append(column)
     return name_of_list
 
-int_float_list(variables_list) #double check
+print(int_float_list(variables_list)) #double check
 #Non-Integer Variables: "Start_Time","Side","City","County","State","Zipcode","Timezone" 
 model_list = [LinearRegression(),SGDRegressor()] #a list of the regression models
 
@@ -31,7 +31,7 @@ model_list = [LinearRegression(),SGDRegressor()] #a list of the regression model
 
 for column in variables_list: #runs through integer variables list above
     X = pd.DataFrame(df[column]) #Whatever is in the list above
-    y = pd.DataFrame(df["Severity"]) #Severity is dependent variable
+    y = pd.DataFrame(df[""]) #Severity is dependent variable
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state=0) #25/75 test-training split
     for models in model_list: #loops through the 2 models in list above
         model = models;
