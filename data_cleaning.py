@@ -7,7 +7,7 @@ print(df) #check if prints
 
 
 # #### Cleaning Code #####
-df = df.drop(columns=["HOMEKIDS","KIDSDRIV","BLUEBOOK","TIF","RED_CAR"]) #drops the 6 useless columns
+df = df.drop(columns=["BIRTH","HOMEKIDS","KIDSDRIV","BLUEBOOK","TIF","RED_CAR"]) #drops the 6 useless columns
 print(df)
 # df.to_csv("Final_Project/Data/US_Accidents_May19_cleaned_2.csv")
 
@@ -24,7 +24,24 @@ print(df) #visual of df after dropped rows
 for column in df.columns[:]:
     df[column] = df[column].astype(str) 
     df[column] = df[column].str.replace('$', '')
+# print(df)
+# print(df.dtypes)
+
+
+#Creating Dummy Variables
+dummy_req_list = ["PARENT1","MSTATUS","GENDER","CAR_USE","REVOKED","URBANICITY"]
+for column in dummy_req_list:
+    df[column] = pd.get_dummies(df[column])
+# print(df)
+# print(df.dtypes)
+
+#Creating Dummy Variables
+cat_req_list = ["EDUCATION","OCCUPATION","CAR_TYPE"]
+for column in cat_req_list:
+    df[column] = df[column].astype('category')
+    df[column] = df[column].cat.codes
 print(df)
 print(df.dtypes)
+
 
 df.to_csv("car_insurance_claim.csv_noNAs_1.csv")
