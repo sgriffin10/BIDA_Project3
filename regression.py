@@ -6,10 +6,10 @@ import matplotlib.pyplot as plt
 from sklearn import metrics
 import numpy as np
 
-def linear_model(dataframe, set_list):
+def linear_model(dataframe, setlist):
     
     #Creates Testing/Training Sets
-    X = pd.DataFrame(dataframe[set_list]) 
+    X = pd.DataFrame(dataframe[setlist]) 
     y = pd.DataFrame(dataframe["CLM_AMT"]) 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state=1) 
     
@@ -23,10 +23,10 @@ def linear_model(dataframe, set_list):
     # print(predicted1, expected1)
     return predicted1, expected1
         
-def SGD_model(dataframe, set_list):
+def SGD_model(dataframe, setlist):
     
     #Creates Testing/Training Sets
-    X = pd.DataFrame(dataframe[set_list]) 
+    X = pd.DataFrame(dataframe[setlist]) 
     y = pd.DataFrame(dataframe["CLM_AMT"]) 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state=1) 
     
@@ -74,30 +74,25 @@ def sgd_accuracy_score(dataframe, setlist):
     print() 
 
 def linear_reg_visusalization(dataframe, setlist):
-
-    # predicted, expected = linear_model(dataframe, setlist)
-    df_ = pd.DataFrame()
-    df_ = df_.set_index('date')
-    print(df)
-    # df.index = pd.to_datetime(df.index)
-    # df_['Expected'] = linear_model(dataframe, setlist)
-    # df_['Predicted'] = pd.Series(predicted)
-    # # font = {'family': 'serif', 'color': 'darkred', 'weight': 'normal', 'size': 12, }
+    predicted, expected = linear_model(dataframe, setlist)
+    df1 = pd.DataFrame()
+    df1['Expected'] = pd.Series(expected)
+    df1['Predicted'] = pd.Series(predicted)
     # plt.figure()
-    # plt.scatter(dataframe['Expected'], dataframe['Predicted'], alpha=0.5)
-    # plt.title('Linear Regression Scatter Plot')
-    # plt.xlabel('Expected')
-    # plt.ylabel('Predicted')
-    # plt.text(5000, 100, "r-squared value: " + str(R_Squared_Score), fontdict=font)
-    # plt.text(5000, 200, "mean-squared error: " + str(Mean_Squared_Error), fontdict=font)
-    # plt.figure()
-    # plt.show()
+    plt.scatter(dataframe['Expected'], dataframe['Predicted'], alpha=0.5)
+    plt.title('Linear Regression Scatter Plot')
+    plt.xlabel('Expected')
+    plt.ylabel('Predicted')
+    plt.text(5000, 100, "r-squared value: " + str(R_Squared_Score))
+    plt.text(5000, 200, "mean-squared error: " + str(Mean_Squared_Error))
+    plt.figure()
+    plt.show()
     # plt.scatter(df['Expected'], df['Predicted2'], alpha=0.5)
     # plt.title('SGD Regressor')
     # plt.xlabel('Expected')
     # plt.ylabel('Predicted2')
-    # plt.text(5000, 100, "r-squared value: " + str(metrics.r2_score(expected, predicted2)), fontdict=font)
-    # plt.text(5000, 200, "mean-squared error: " + str(metrics.mean_squared_error(expected, predicted2)), fontdict=font)
+    # plt.text(5000, 100, "r-squared value: " + str(metrics.r2_score(expected, predicted2)))
+    # plt.text(5000, 200, "mean-squared error: " + str(metrics.mean_squared_error(expected, predicted2)))
 
 
 

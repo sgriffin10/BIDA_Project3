@@ -30,7 +30,7 @@ model_list = [LinearRegression(),SGDRegressor(eta0=0.000000004)]
 # share the original & clean code 
 
 for a_list in entire_thing:
-    X_train, X_test, y_train, y_test = train_test_split(df[entire_thing], df["CLM_AMT"], test_size = 0.25, random_state=1) 
+    X_train, X_test, y_train, y_test = train_test_split(df[a_list], df["CLM_AMT"], test_size = 0.25, random_state=1) 
     #Model Loop
     for models in model_list: 
         model = models;
@@ -53,12 +53,12 @@ for a_list in entire_thing:
         df['Expected'] = pd.Series(expected)
         df['Predicted'] = pd.Series(predicted)
         # font = {'family': 'serif', 'color': 'darkred', 'weight': 'normal', 'size': 12, }
-        plt.figure()
+        # plt.figure()
         plt.scatter(df['Expected'], df['Predicted'], alpha=0.5)
-        plt.title('Linear Regression Scatter Plot')
+        plt.title('Scatter Plot')
         plt.xlabel('Expected')
         plt.ylabel('Predicted')
-        plt.text(5000, 100, "r-squared value: " + str(metrics.r2_score(expected, predicted)))
-        plt.text(5000, 500, "mean-squared error: " + str(metrics.mean_squared_error(expected, predicted)))
+        plt.text(5000, 1000, "r-squared value: " + str(metrics.r2_score(expected, predicted)))
+        plt.text(5000, 50, "mean-squared error: " + str(metrics.mean_squared_error(expected, predicted)))
         plt.show()
         df = pd.read_csv("car_insurance_claim_noNAs_2.csv")
