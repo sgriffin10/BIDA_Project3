@@ -39,7 +39,7 @@ for column in cat_req_list:
 # print(df)
 # print(df.dtypes)
 
-# Changes Data Types from Object to Int
+# Changes Data Types from Object to Float
 for column in df.columns[:]:
     if df[column].dtypes == "object":
         # df[column] = df[column].astype(str) 
@@ -48,4 +48,4 @@ for column in df.columns[:]:
 # print(df.dtypes)
 
 #Saves to a new file
-# df.to_csv("car_insurance_claim_noNAs_2.csv")
+df.to_csv("car_insurance_claim_noNAs_2.csv")

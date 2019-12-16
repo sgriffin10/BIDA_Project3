@@ -12,7 +12,7 @@ def run_regression_model(data_set, data_target, model):
     model.fit(X=X_train, y=y_train);
 
     ### Printing Intercept & Coeffficients
-    ### We comment this out because we don't want to print out intercept and coefficients everytime when we call function get_accuracy_score and get_visualization
+    ### We comment line 15-18 because we don't want to print out intercept and coefficients everytime when we call function get_accuracy_score and get_visualization
     # print(model.intercept_) #prints intercept
     # np.set_printoptions(formatter={'float': lambda x: "{0:0.5f}".format(x)})
     # print("Coefficient:", model.coef_) 
@@ -93,8 +93,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
