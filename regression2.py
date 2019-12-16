@@ -30,14 +30,14 @@ def get_accuracy_score(data_set, data_target, model):
     Mean_Absolute_Error = metrics.mean_absolute_error(expected, predicted)
     Mean_Squared_Error = metrics.mean_squared_error(expected, predicted)
     Root_Mean_Squared_Error = np.sqrt(metrics.mean_squared_error(expected, predicted))
-    # Mean_Squared_Log_Error = np.sqrt(metrics.mean_squared_log_error(expected, predicted))
+    # Mean_Squared_Log_Error = np.sqrt(metrics.mean_squared_log_error(expected, predicted)) # Natural Logarithm cannot take negative value, so we comment it out
 
     ### Printing Accuracy Scores ###
     print("R-Squared Score: ", R_Squared_Score)
     print("Mean Absolute Error: ", Mean_Absolute_Error)
     print("Mean Squared Error: ", Mean_Squared_Error)
     print("Root Mean Squared Error: ", Root_Mean_Squared_Error)
-    # print("Mean Squared Log Error: ", Mean_Squared_Log_Error)#logarithm brings the points closer ; look at it in a graph
+    # print("Mean Squared Log Error: ", Mean_Squared_Log_Error)
     print() 
     return R_Squared_Score, Mean_Squared_Error
 
