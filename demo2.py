@@ -38,8 +38,7 @@ def regression(df, list_of_set, list_of_model):
             plt.ylabel('Predicted')
             plt.text(5000, 1000, "r-squared value: " + str(metrics.r2_score(expected, predicted)))
             plt.text(5000, 200, "mean-squared error: " + str(metrics.mean_squared_error(expected, predicted)))
-            plt.show()
-            # df = pd.read_csv("car_insurance_claim_noNAs_2.csv")
+
 
 
 def main():
