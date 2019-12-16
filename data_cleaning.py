@@ -48,4 +48,4 @@ for column in df.columns[:]:
 # print(df.dtypes)
 
 #Saves to a new file
-df.to_csv("car_insurance_claim_noNAs_2.csv")
+# df.to_csv("car_insurance_claim_noNAs_2.csv")
