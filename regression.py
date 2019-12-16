@@ -120,7 +120,7 @@ def main():
     # linear_accuracy_score(df, subset_list_car_char)
     # sgd_accuracy_score(df, subset_list_car_char)
 
-    linear_reg_visusalization(df, entire_list)
+    # linear_reg_visusalization(df, entire_list)
 
     #List of Models
     # model_list = [LinearRegression(),SGDRegressor(eta0=0.000000004)]
