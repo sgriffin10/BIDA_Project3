@@ -12,7 +12,7 @@ def regression_model(dataframe, set_list, list_of_models):
     X = pd.DataFrame(dataframe[set_list]) 
     y = pd.DataFrame(dataframe["CLM_AMT"]) 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state=1) 
-
+    
     #Model Loop
     for models in list_of_models: 
         model = models;
@@ -28,7 +28,7 @@ def regression_model(dataframe, set_list, list_of_models):
         print("Mean Absolute Error: ", metrics.mean_absolute_error(expected, predicted))
         print("Mean Squared Error: ", metrics.mean_squared_error(expected, predicted))
         print("Root Mean Squared Error: ", np.sqrt(metrics.mean_squared_error(expected, predicted)))
-        # print("Mean Squared Log Error: ", np.sqrt(metrics.mean_squared_log_error(expected, predicted)))
+        print("Mean Squared Log Error: ", np.sqrt(metrics.mean_squared_log_error(expected + 1286, predicted + 1286)))#logarithm brings the points closer ; look at it in a graph
         print() 
 
 
@@ -72,7 +72,11 @@ def main():
     subset_list_car_char = ["TRAVTIME", "CAR_USE", "BLUEBOOK", "CAR_TYPE", "OLDCLAIM", "CLM_FREQ", "REVOKED", "MVR_PTS", "CAR_AGE", "CLAIM_FLAG", "URBANICITY"]
 
     #List of Models
-    model_list = [LinearRegression(),SGDRegressor()]
+    model_list = [LinearRegression(),SGDRegressor(eta0=0.000000004)]
+    # play w. parameters
+    # explain that we tried the best we can; but that we could explain it at some later time
+    # share the original & clean code 
+
 
     #Calls Regresson Model 
     regression_model(df, entire_list, model_list)

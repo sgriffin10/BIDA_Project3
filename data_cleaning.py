@@ -2,7 +2,7 @@ import pandas as pd
 
 #Import CSV to dataframe
 df = pd.read_csv("car_insurance_claim.csv", sep = ',') 
-# print(df) 
+print(df) 
 
 
 
@@ -13,7 +13,7 @@ df = df.drop(columns=["ID","BIRTH","HOMEKIDS","TIF","RED_CAR"])
 #Drops rows with missing values
 df = df.dropna() 
 print(df.isnull().any()) 
-# print(df) 
+print(df) 
 
 #Removes "$" and "," from rows
 for column in df.columns[:]:
