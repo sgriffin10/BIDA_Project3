@@ -31,6 +31,30 @@ def regression_model(dataframe, set_list, list_of_models):
         # print("Mean Squared Log Error: ", np.sqrt(metrics.mean_squared_log_error(expected, predicted)))
         print() 
 
+
+def linear_reg_visusalization(df, set_list, list_of_models):
+    regression_model(df, set_list, list_of_models)
+    df = pd.DataFrame()
+    df['Expected'] = pd.Series(expected)
+    df['Predicted'] = pd.Series(predicted)
+    # font = {'family': 'serif', 'color': 'darkred', 'weight': 'normal', 'size': 12, }
+    plt.figure()
+    plt.scatter(df['Expected'], df['Predicted'], alpha=0.5)
+    plt.title('Linear Regression Scatter Plot')
+    plt.xlabel('Expected')
+    plt.ylabel('Predicted')
+    plt.text(5000, 100, "r-squared value: " + str(metrics.r2_score(expected, predicted)), fontdict=font)
+    plt.text(5000, 200, "mean-squared error: " + str(metrics.mean_squared_error(expected, predicted)), fontdict=font)
+    plt.figure()
+    #     plt.scatter(df['Expected'], df['Predicted2'], alpha=0.5)
+    #     plt.title('SGD Regressor')
+    #     plt.xlabel('Expected')
+    #     plt.ylabel('Predicted2')
+    #     plt.text(5000, 100, "r-squared value: " + str(metrics.r2_score(expected, predicted2)), fontdict=font)
+    #     plt.text(5000, 200, "mean-squared error: " + str(metrics.mean_squared_error(expected, predicted2)), fontdict=font)
+    #     plt.show()
+
+
 def main():
 
     #Reads CSV into dataframe
@@ -52,10 +76,10 @@ def main():
 
     #Calls Regresson Model 
     regression_model(df, entire_list, model_list)
-    regression_model(df, subset_list_human_char, model_list)
-    regression_model(df, subset_list_car_char, model_list)
+    # regression_model(df, subset_list_human_char, model_list)
+    # regression_model(df, subset_list_car_char, model_list)
 
-    
+    linear_reg_visusalization(df, entire_list, model_list)
 
 if __name__ == "__main__":
     main()
